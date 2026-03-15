@@ -6,7 +6,7 @@ Stripe (simulated events with Stripe CLI) -> n8n -> PostgreSQL -> Metabase -> Sl
 
 Operational command guide:
 
-- `WEBHOOK_TEST_OPS.md`
+- [WEBHOOK_TEST_OPS.md](./WEBHOOK_TEST_OPS.md)
 
 ## 1. Project folder structure
 
