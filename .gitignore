@@ -1,0 +1,21 @@
+# Sensitive environment files
+.env
+.env.*
+!.env.example
+
+# Optional local secrets directory
+secrets/
+
+# Python/env leftovers
+.venv/
+venv/
+
+# Editor/OS
+.DS_Store
+.vscode/
+.idea/
+
+# Logs and temp
+*.log
+*.tmp
+*.bak

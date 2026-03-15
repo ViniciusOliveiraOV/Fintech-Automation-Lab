@@ -1,0 +1,50 @@
+[
+  {
+    "id": "evt_test_001",
+    "type": "checkout.session.completed",
+    "created": 1710489000,
+    "data": {
+      "object": {
+        "id": "cs_test_a1b2c3d4",
+        "customer_details": {
+          "email": "ana.silva@example.com"
+        },
+        "amount_total": 14990,
+        "currency": "usd",
+        "payment_status": "paid"
+      }
+    }
+  },
+  {
+    "id": "evt_test_002",
+    "type": "checkout.session.completed",
+    "created": 1710492600,
+    "data": {
+      "object": {
+        "id": "cs_test_e5f6g7h8",
+        "customer_details": {
+          "email": "bruno.souza@example.com"
+        },
+        "amount_total": 25900,
+        "currency": "usd",
+        "payment_status": "paid"
+      }
+    }
+  },
+  {
+    "id": "evt_test_003",
+    "type": "checkout.session.completed",
+    "created": 1710496200,
+    "data": {
+      "object": {
+        "id": "cs_test_i9j0k1l2",
+        "customer_details": {
+          "email": "carla.oliveira@example.com"
+        },
+        "amount_total": 9900,
+        "currency": "usd",
+        "payment_status": "paid"
+      }
+    }
+  }
+]
