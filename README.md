@@ -4,6 +4,10 @@ Pipeline simulated locally:
 
 Stripe (simulated events with Stripe CLI) -> n8n -> PostgreSQL -> Metabase -> Slack alerts
 
+Operational command guide:
+
+- `WEBHOOK_TEST_OPS.md`
+
 ## 1. Project folder structure
 
 ```text
@@ -166,6 +170,15 @@ Quick reference:
 5. Set **Respond** to `Immediately` for first local test.
 6. For Stripe signature validation, enable **Options -> Raw Body**.
 7. Save node.
+8. Click **Execute workflow** (or **Listen for test event**) to enable test mode.
+9. Copy the **Test URL** shown in the Webhook node panel.
+
+With path `stripe-checkout`, expected URLs are:
+
+- Test URL (only while workflow is waiting): `http://localhost:5678/webhook-test/stripe-checkout`
+- Production URL (workflow published + active): `http://localhost:5678/webhook/stripe-checkout`
+
+Important: the Test URL works only after you click **Execute workflow** and usually for one request at a time.
 
 Expected payload field for event type:
 
