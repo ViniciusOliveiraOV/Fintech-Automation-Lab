@@ -8,6 +8,10 @@ Operational command guide:
 
 - [WEBHOOK_TEST_OPS.md](./WEBHOOK_TEST_OPS.md)
 
+Feature tracking:
+
+- [FEATURE_CHECKLIST.md](./FEATURE_CHECKLIST.md)
+
 ## 1. Project folder structure
 
 ```text

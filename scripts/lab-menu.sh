@@ -6,17 +6,38 @@ if [[ ! -f "Makefile" ]]; then
   exit 1
 fi
 
+run_follow_command() {
+  local label="$1"
+  shift
+
+  echo
+  echo "--- ${label} ---"
+  echo "Press Enter to stop and return to menu."
+
+  "$@" &
+  local cmd_pid=$!
+
+  read -r
+
+  if kill -0 "$cmd_pid" 2>/dev/null; then
+    kill "$cmd_pid" 2>/dev/null || true
+    wait "$cmd_pid" 2>/dev/null || true
+  fi
+
+  echo "Returned to menu."
+}
+
 show_menu() {
   cat <<'MENU'
 
 Fintech Automation Lab Menu
 1) Start stack
 2) Status (docker compose ps)
-3) Logs n8n
-4) Logs postgres
-5) Logs metabase
-6) Stripe listen (test webhook)
-7) Stripe listen (active webhook)
+3) Logs n8n (Enter to return)
+4) Logs postgres (Enter to return)
+5) Logs metabase (Enter to return)
+6) Stripe listen test webhook (Enter to stop)
+7) Stripe listen active webhook (Enter to stop)
 8) Stripe trigger checkout.session.completed
 9) Curl test webhook payload
 10) Curl active webhook payload
@@ -37,11 +58,11 @@ while true; do
   case "$option" in
     1) make up ;;
     2) make ps ;;
-    3) make logs-n8n ;;
-    4) make logs-postgres ;;
-    5) make logs-metabase ;;
-    6) make listen-test ;;
-    7) make listen-active ;;
+    3) run_follow_command "n8n logs" docker compose logs -f n8n ;;
+    4) run_follow_command "Postgres logs" docker compose logs -f postgres ;;
+    5) run_follow_command "Metabase logs" docker compose logs -f metabase ;;
+    6) run_follow_command "Stripe listen -> webhook-test" stripe listen --events checkout.session.completed --forward-to http://localhost:5678/webhook-test/stripe-checkout ;;
+    7) run_follow_command "Stripe listen -> webhook" stripe listen --events checkout.session.completed --forward-to http://localhost:5678/webhook/stripe-checkout ;;
     8) make trigger ;;
     9) make curl-test ;;
     10) make curl-active ;;
